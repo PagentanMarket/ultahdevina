@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Game ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body data-page="game">
+    
+    <div id="progress-indicator">Tahap 7/8 : Mini Game</div>
+    <div id="music-control" class="glass-btn">🎵 PLAY MUSIC</div>
+    <audio id="bg-music" src="assets/music/awal.mp3" loop preload="auto"></audio>
+
+    <section class="glass-card game-container">
+        <h2>❤️ TAP YOURS BUBUB ❤️</h2>
+        <div class="game-stats">
+            <p>Skor: <span id="game-score">0</span></p>
+            <p>Waktu: <span id="game-time">30</span>s</p>
+        </div>
+
+        <div id="game-area">
+            <!-- Hati akan di-generate oleh JS di sini -->
+            <div id="game-start-overlay">
+                <button id="btn-start-game" class="btn-primary">MULAI GAME</button>
+            </div>
+            <div id="game-over-overlay" class="hidden">
+                <h2>GAME OVER!</h2>
+                <p>Skor Devina: <br><span id="final-game-score" class="score-display">0 ❤️</span></p>
+                <button id="btn-to-final" class="btn-primary">LIHAT KEJUTAN TERAKHIR ✨</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    
+     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const bgMusic = document.getElementById("bg-music");
+            
+            if (bgMusic) {
+                // Pastikan volume full dan tidak di-mute
+                bgMusic.muted = false;
+                bgMusic.volume = 1.0;
+                
+                // Coba paksa jalankan musik
+                let playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Browser memblokir autoplay. Menunggu klik user...");
+                        // Jika browser memblokir (karena pindah halaman), musik akan langsung nyala saat user klik di manapun di layar
+                        document.body.addEventListener('click', function playAudioOnInteraction() {
+                            bgMusic.play();
+                            document.body.removeEventListener('click', playAudioOnInteraction);
+                        });
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Untukmu ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body data-page="surat">
+    
+    <div id="progress-indicator">Tahap 6/8 : Sebuah Surat</div>
+    <div id="music-control" class="glass-btn">🎵 PLAY MUSIC</div>
+    <audio id="bg-music" src="assets/music/awal.mp3" loop preload="auto"></audio>
+
+    <section id="step-letter" class="glass-card active">
+        <h2>Untuk <span id="display-name-letter">[NAMA]</span> ❤️</h2>
+        <div class="letter-content" id="letter-content">
+            <!-- Teks akan diketik otomatis oleh JS -->
+        </div>
+        <button id="btn-to-game" class="btn-primary hidden">AKU PUNYA SATU GAME UNTUKMU 🎮</button>
+    </section>
+
+    <script src="script.js"></script>
+
+    <!-- SCRIPT TAMBAHAN UNTUK MEMAKSA MUSIK NYALA DI HALAMAN SURAT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const bgMusic = document.getElementById("bg-music");
+            
+            if (bgMusic) {
+                // Pastikan volume full dan tidak di-mute
+                bgMusic.muted = false;
+                bgMusic.volume = 1.0;
+                
+                // Coba paksa jalankan musik
+                let playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Browser memblokir autoplay. Menunggu klik user...");
+                        // Jika browser memblokir (karena pindah halaman), musik akan langsung nyala saat user klik di manapun di layar
+                        document.body.addEventListener('click', function playAudioOnInteraction() {
+                            bgMusic.play();
+                            document.body.removeEventListener('click', playAudioOnInteraction);
+                        });
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

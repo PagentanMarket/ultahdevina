@@ -1,0 +1,315 @@
+/* ==========================================
+   CSS VARIABLES & GLOBAL STYLE
+   Desain modern, glassmorphism, unicorn theme
+========================================== */
+:root {
+    --primary-color: #ff758c;
+    --secondary-color: #ff7eb3;
+    /* Tema Unicorn Pastel Pelangi (Dinonaktifkan demi background image) */
+    /* --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 20%, #a1c4fd 40%, #b2fefa 60%, #fdfbfb 80%, #ffc3a0 100%); */
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --text-dark: #4a4a4a;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Menggunakan gambar yang diunggah sebagai latar belakang */
+    background-image: url('assets/photo/bg.png.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Membuat background tetap saat discroll */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-dark);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Typography */
+h1, h2, h3 { font-family: 'Caveat', cursive; color: #d6336c; text-align: center; }
+h1 { font-size: 3rem; margin-bottom: 10px; }
+h2 { font-size: 2.2rem; margin-bottom: 15px; }
+p { text-align: center; line-height: 1.6; margin-bottom: 15px; font-size: 1rem; }
+.highlight-name { font-size: 2rem; color: #b71c1c; font-weight: bold; }
+.small-text { font-size: 0.85rem; opacity: 0.8; }
+
+/* Progress Indicator & Music */
+#progress-indicator {
+    position: fixed; top: 15px; left: 15px;
+    background: var(--glass-bg); backdrop-filter: blur(10px);
+    padding: 8px 15px; border-radius: 20px; font-size: 0.9rem;
+    font-weight: 600; color: #d6336c; z-index: 100;
+}
+
+#music-control {
+    position: fixed; top: 15px; right: 15px;
+    cursor: pointer; font-size: 0.9rem; z-index: 100;
+    padding: 8px 15px; border-radius: 20px; font-weight: 600;
+    background: var(--glass-bg); backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+#music-control:hover { background: rgba(255, 255, 255, 0.7); }
+
+/* Aesthetic Refresh Button (Tombol Darurat Baru) */
+#btn-reset-storage {
+    position: fixed; 
+    top: 55px; 
+    left: 15px; 
+    font-size: 0.85rem; 
+    padding: 8px 16px; 
+    z-index: 100; 
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    color: #d6336c;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(255, 117, 140, 0.15);
+    transition: all 0.3s ease;
+}
+
+#btn-reset-storage:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(255, 117, 140, 0.3);
+    color: #ff758c;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Visibility Utility */
+.hidden { display: none !important; }
+.active { display: flex !important; }
+
+/* Buttons */
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none; padding: 12px 25px;
+    border-radius: 50px; font-size: 1.1rem;
+    font-weight: 600; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+    transition: all 0.3s ease; margin-top: 20px;
+}
+.btn-primary:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px);
+}
+.btn-primary:disabled {
+    background: #ccc; cursor: not-allowed;
+    box-shadow: none; transform: none;
+}
+
+/* Countdown */
+.countdown-container { display: flex; gap: 15px; margin: 20px 0; }
+.time-box {
+    background: rgba(255, 255, 255, 0.6);
+    padding: 15px; border-radius: 15px;
+    min-width: 70px; text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.time-box span { font-size: 1.8rem; font-weight: bold; color: #d6336c; }
+.time-box p { margin: 0; font-size: 0.8rem; }
+
+/* Gallery */
+.grid-gallery { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;}
+.polaroid {
+    background: #fff; padding: 10px; padding-bottom: 5px;
+    border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer; transition: 0.3s; width: 120px; text-align: center;
+}
+.polaroid:hover { transform: rotate(-3deg) scale(1.05); }
+.img-placeholder {
+    width: 100px; height: 100px; background: #ffe4e1;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 4px; font-size: 0.8rem; color: #ff758c; font-weight: 600;
+}
+.polaroid p { margin-top: 10px; font-family: 'Caveat'; font-size: 1.2rem; margin-bottom: 0;}
+.status { color: green; font-weight: bold; }
+
+/* Lightbox */
+.lightbox {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); z-index: 999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.lightbox img { max-width: 90%; max-height: 70%; border-radius: 10px; border: 5px solid white;}
+.lightbox .caption { color: white; margin-top: 15px; font-size: 1.5rem; font-family: 'Caveat'; }
+.close-lightbox { position: absolute; top: 20px; right: 30px; color: white; font-size: 3rem; cursor: pointer;}
+
+/* Video */
+.video-wrapper { width: 100%; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 15px;}
+video { width: 100%; display: block; }
+
+/* Surat Typing */
+.letter-content {
+    background: rgba(255,255,255,0.5); padding: 20px;
+    border-radius: 15px; min-height: 150px; width: 100%; text-align: center;
+}
+
+/* Game Area */
+#game-area {
+    width: 100%; height: 300px; background: rgba(255,255,255,0.5);
+    border-radius: 15px; position: relative; overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1); border: 2px dashed var(--primary-color);
+}
+.game-stats { display: flex; justify-content: space-between; width: 100%; padding: 0 20px; font-weight: bold; font-size: 1.2rem;}
+#game-start-overlay, #game-over-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255,255,255,0.9); display: flex;
+    flex-direction: column; align-items: center; justify-content: center; z-index: 10;
+}
+.game-heart-target {
+    position: absolute; font-size: 2rem; cursor: pointer; user-select: none;
+    animation: pulse 0.5s infinite alternate; transition: transform 0.1s;
+}
+.game-heart-target:active { transform: scale(1.5); }
+.score-display { font-size: 2rem; color: #d6336c; font-weight: bold;}
+
+/* Unicorn Icon Lucu */
+.unicorn-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 3rem; /* Ukuran unicorn */
+    z-index: 1000;
+    pointer-events: none; /* Tidak mengganggu klik */
+    opacity: 0; /* Mulai tersembunyi untuk animasi muncul */
+    animation: unicornAppear 1s forwards, unicornBob 3s infinite ease-in-out;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Animasi untuk Unicorn Melayang (Uwu) */
+@keyframes unicornAppear {
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes unicornBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Animasi untuk Unicorn Berjatuhan (Confetti) */
+.confetti-unicorn {
+    position: fixed;
+    z-index: 99;
+    pointer-events: none;
+    animation: unicornFall linear forwards;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+@keyframes unicornFall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.2); } }
+.bounce-text { animation: bounce 2s infinite; }
+.confetti { position: absolute; z-index: 99; border-radius: 50%; animation: fall linear forwards; }
+@keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+
+/* Responsiveness */
+@media (max-width: 480px) {
+    .glass-card { padding: 30px 20px; }
+    .countdown-container { flex-wrap: wrap; justify-content: center; }
+    .time-box { min-width: 60px; padding: 10px; }
+}
+
+/* ==========================================
+   MENU SPESIAL (Hanya Muncul Setelah Tamat)
+========================================== */
+#special-nav-menu {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.nav-menu-btn {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255,255,255,0.5);
+}
+
+.nav-menu-btn:hover {
+    background: #d6336c;
+    transform: translateY(-3px);
+}
+
+.nav-menu-list {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 220px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+.nav-menu-list button {
+    background: #ffe4e1;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #d6336c;
+    font-weight: 600;
+    text-align: left;
+    transition: 0.2s;
+}
+
+.nav-menu-list button:hover {
+    background: var(--primary-color);
+    color: white;
+    padding-left: 15px; /* Efek bergeser sedikit saat disentuh */
+}

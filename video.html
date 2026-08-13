@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Spesial ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body data-page="video">
+    
+    <div id="progress-indicator">Tahap 5/8 : Special Video</div>
+    
+    <div id="music-control" class="glass-btn">🎵 PLAY MUSIC</div>
+    <audio id="bg-music" src="assets/music/awal.mp3" loop preload="auto"></audio>
+
+    <section class="glass-card video-container">
+        <h2>🎬 A Special Video For You</h2>
+        <p>Ada sesuatu yang ingin aku sampaikan...</p>
+        
+        <div class="video-wrapper">
+            <video id="birthday-video" controls>
+                <source src="assets/videos/video-ucapan.mp4" type="video/mp4">
+                Browser kamu tidak mendukung pemutaran video.
+            </video>
+        </div>
+
+        <p id="video-status" class="small-text">Tonton video sampai selesai ya...</p>
+        <button id="btn-to-next" class="btn-primary" disabled>LANJUT KE SURAT</button>
+    </section>
+
+    <script src="script.js"></script>
+
+    <!-- SCRIPT TAMBAHAN UNTUK FIX MUSIK SETELAH VIDEO -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById("birthday-video");
+            const bgMusic = document.getElementById("bg-music");
+            const btnNext = document.getElementById("btn-to-next");
+
+            if (video && bgMusic) {
+                // Matikan musik otomatis saat video mulai diputar
+                video.addEventListener("play", function() {
+                    bgMusic.pause();
+                });
+
+                // Nyalakan musik otomatis saat video selesai
+                video.addEventListener("ended", function() {
+                    bgMusic.play().catch(e => console.log("Gagal play otomatis:", e));
+                    
+                    // Simpan status musik agar halaman selanjutnya tahu musik harus nyala
+                    localStorage.setItem("isMusicPlaying", "true");
+                    sessionStorage.setItem("isMusicPlaying", "true");
+                });
+            }
+
+            // Memastikan status musik "nyala" saat tombol Lanjut diklik
+            if (btnNext) {
+                btnNext.addEventListener("click", function() {
+                    localStorage.setItem("isMusicPlaying", "true");
+                    sessionStorage.setItem("isMusicPlaying", "true");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

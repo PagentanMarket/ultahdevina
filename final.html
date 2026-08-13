@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body data-page="final">
+    
+    <div id="progress-indicator">Tahap 8/8 : Final</div>
+    <div id="music-control" class="glass-btn">🎵 PLAY MUSIC</div>
+    <audio id="bg-music" src="assets/music/awal.mp3" loop preload="auto"></audio>
+
+    <section id="step-final" class="glass-card active">
+        <h2>🏆 YOUR BUBUB LOVE SCORE 🏆</h2>
+        <h3 class="score-display">❤️ <span id="final-score">0</span> Bayoe Collected ❤️</h3>
+        <p>Ternyata kamu berhasil mengumpulkan banyak bubub hari ini!</p>
+        <h2 class="bounce-text">🎂 Selamat Ulang Tahun yang ke-23 <span id="display-name-final">[NAMA]</span> 🎂</h2>
+        <div id="final-messages" class="final-wishes">
+            <!-- Pesan final dimuat dari JS -->
+        </div>
+        <p class="closing-text">Terima kasih sudah menjadi<br>seseorang yang begitu spesial.</p>
+        
+        <!-- Tombol Ulangi Dari Awal -->
+        <button id="btn-restart" class="btn-primary" style="margin-top: 20px;">🔄 ULANGI DARI AWAL</button>
+    </section>
+
+    <script src="script.js"></script>
+
+     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const bgMusic = document.getElementById("bg-music");
+            
+            if (bgMusic) {
+                // Pastikan volume full dan tidak di-mute
+                bgMusic.muted = false;
+                bgMusic.volume = 1.0;
+                
+                // Coba paksa jalankan musik
+                let playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Browser memblokir autoplay. Menunggu klik user...");
+                        // Jika browser memblokir (karena pindah halaman), musik akan langsung nyala saat user klik di manapun di layar
+                        document.body.addEventListener('click', function playAudioOnInteraction() {
+                            bgMusic.play();
+                            document.body.removeEventListener('click', playAudioOnInteraction);
+                        });
+                    });
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

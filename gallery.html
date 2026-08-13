@@ -1,0 +1,73 @@
+\<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body data-page="gallery">
+    
+    <div id="progress-indicator">Tahap 4/8 : Galeri Kenangan</div>
+    <div id="music-control" class="glass-btn">🎵 PLAY MUSIC</div>
+    <audio id="bg-music" src="assets/music/awal.mp3" loop preload="auto"></audio>
+
+    <section class="glass-card gallery-container">
+        <h2>📸 Buka Semua Kenangan Ini</h2>
+        <p class="small-text">Klik setiap foto untuk melihatnya</p>
+        
+        <div class="grid-gallery">
+            <div class="polaroid" data-index="1">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 1 <span class="status"></span></p>
+            </div>
+            <div class="polaroid" data-index="2">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 2 <span class="status"></span></p>
+            </div>
+            <div class="polaroid" data-index="3">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 3 <span class="status"></span></p>
+            </div>   
+            <div class="polaroid" data-index="4">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 4 <span class="status"></span></p>
+            </div>
+            <div class="polaroid" data-index="5">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 5 <span class="status"></span></p>
+            </div>
+            <div class="polaroid" data-index="6">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 6 <span class="status"></span></p>
+            </div>
+            <div class="polaroid" data-index="7">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 7 <span class="status"></span></p>
+            </div>
+            <div class="polaroid" data-index="8">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 8 <span class="status"></span></p>
+            </div>
+            <div class="polaroid" data-index="9">
+                <div class="img-placeholder">Klik Buka</div>
+                <p>Foto 9 <span class="status"></span></p>
+            </div>   
+          
+            
+        </div>
+
+        <button id="btn-to-video" class="btn-primary" disabled>LANJUT KE VIDEO →</button>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox hidden">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Kenangan">
+        <p id="lightbox-caption" class="caption">Caption foto</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
