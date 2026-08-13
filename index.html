@@ -27,5 +27,32 @@
     </section>
 
     <script src="script.js"></script>
+    
+    <!-- SCRIPT TAMBAHAN UNTUK MEMAKSA MUSIK NYALA DI HALAMAN SURAT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const bgMusic = document.getElementById("bg-music");
+            
+            if (bgMusic) {
+                // Pastikan volume full dan tidak di-mute
+                bgMusic.muted = false;
+                bgMusic.volume = 1.0;
+                
+                // Coba paksa jalankan musik
+                let playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Browser memblokir autoplay. Menunggu klik user...");
+                        // Jika browser memblokir (karena pindah halaman), musik akan langsung nyala saat user klik di manapun di layar
+                        document.body.addEventListener('click', function playAudioOnInteraction() {
+                            bgMusic.play();
+                            document.body.removeEventListener('click', playAudioOnInteraction);
+                        });
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
